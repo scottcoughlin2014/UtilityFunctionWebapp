@@ -1,30 +1,6 @@
-#more comments will be added later
-
 import subprocess as sp
 import argparse
 import re
-
-
-#input string and list of strings
-#output list of strings of split origional string
-#unused
-def sever(s, l):
-    s = [s]
-    n = []
-    print("Sever:")
-    print(s)
-    print(l)
-    print
-    for e in l:
-        print(e)
-        for i in s:
-            print(i)
-            n.append(i.split(e))
-        s = n
-        n = []
-        print(s)
-    print
-    print
 
 #input: string of help result to do an initial pass on
 #output: dict of valuable display parts
@@ -38,6 +14,9 @@ def Parse(str):
     groups = []
     counter = 0
     perserve = []
+    #The goal in this piece of code is to extract out the individual meaning of each of the lines of the text a being an individual line
+    #Then the logics, aka what is needed and what is optional, is placed in a string to be furthur paresed when all the logics end
+    #after the logics end then the help text parsing is started and it uses the logics to slowly build the dict that it should output
     for a in arr:
         a = a.strip()
         if (a != ""):
@@ -45,6 +24,7 @@ def Parse(str):
                 segment = True
                 logic = logic.split(".py ")[1]
                 logicexp = re.compile("\[-+(\w+)|\(-+(\w+)|\| ?-+(\w+)")
+                #splits the logic part into three groups, group 1 starts with [, group 2 starts with (, and group 3 starts with |
                 groups = logicexp.findall(logic)
             elif (segment==False):
                 logic = logic + a
@@ -59,14 +39,15 @@ def Parse(str):
 
                     n = a.split(" ") #n[2:] will return help text, earlier is the informatino on the param
                     helpText = ""
-                    for e in n[2:]:
+                    for e in n[2:]: #make my function clearer
                         helpText = helpText + e + " "
                     helpHelper.update({"Text": helpHelper["Text"] + helpText.strip()})
+                    #group 1 is not required, while group 2 is mutually required with any group 3's that follow it, but each individual group 2 is required
                     if (groups[counter][0]!=''):
                         helpHelper.update({"Type": (0, [])})
                         groups[counter] = groups[counter][0]
                     elif (groups[counter][1]!=''):
-                        perserve = []
+                        perserve = [] #stores the connection between mutually exclusive inputs
                         helpHelper.update({"Type": (1, perserve)})
                         groups[counter] = groups[counter][1]
                         perserve.append(groups[counter])
@@ -94,6 +75,9 @@ def Fold(dict, args):
             text_file.write("\t\t" + str(key) + "\n")
     text_file.close()
     return "manifest_of_%s.txt" %args.pyfile
+#The file produced by this can be edited by the user, adding links or removing them where wanted
+#additional functionality will be added in the UnFold part to support initial values where possible, since this program cannot pick up if there are initial values
+
 
 #input: Filename
 #output: Dictionary from file
@@ -107,6 +91,7 @@ def UnFold(filename):
     fieldsave = ""
     compiled = {}
     linksave= []
+    #this parses line by line and determines the meaning from the amount of tabs used on that line
     for e in arr:
         if (e!=""):
             if (e[1]=="\t"):
@@ -121,7 +106,7 @@ def UnFold(filename):
     return compiled
 
 
-
+#this part simply calls the function and sees what its output for help is and then pases the information on to parser
 parser = argparse.ArgumentParser()
 parser.add_argument("-pyfile", required=True)
 args = parser.parse_args()
@@ -130,7 +115,9 @@ popen = sp.Popen('python %s --help' %args.pyfile, stdout=sp.PIPE)
 print(popen)
 stri = popen.stdout.read()
 help = Parse(stri)
+#folds the dict up into a text document
 filenamef = Fold(help, args)
+#this part here (the UnFold) would not be in the final program, it would be moved into the webapp so that the webapp could parse out the dict.
 recomped = UnFold(filenamef)
 print
 print
