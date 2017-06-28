@@ -1,3 +1,6 @@
+#probably need to do this entire thing with regular expressions
+#in the process of doing such... not functioning at all
+return 0
 import subprocess as sp
 import argparse
 import re
@@ -5,11 +8,37 @@ import re
 #input: string of help result to do an initial pass on
 #output: dict of valuable display parts
 #Parses the Help text of function
-def Parse(str):
-    arr = str.split("\r")[1:]#technically from 0 onward in a standard function
-    segment = False #segment 0: logic segment 1: help
+def Parse(inputString):
+    #Shape of output:
+    #a dict of param fields ex: i, verbose, v
+    #that each hold a dict containing: "Field Name" (a string), "Help Text" (a string), and "Mutually Exclusive Links" (a list)
+
+    resultant = {}
+    divOne = re.compile("(?s)usage:\s\w+(?:.py )?(.+)optional arguments:")#this is the section with the logic
+    divOneParse = re.compile("((?:\| | |\[|\()-+(\w+))[^[-|]*")#this parses out the logic, group 1 tells you something about the type, group 2 tells you what field is
+    #we might be able to combine the following two
+    divTwo = re.compile("(?s)optional arguments:\s(.+)(?:required named arguments)?")#this is the section with the optional or mutually exclusive arguments
+    divThree = re.compile("(?s)required named arguments:\s(.+)")#this is the section with the not optional arguements
+    #this next one parses out the text
+    textParse = re.compile("(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*") #group 1: param group 2: text... Doesn't function in every case properly, unsure why
+    paramParse = re.compile("(?s)-+([^\s]+)\s([^\n|\r|\-]+)") #this pares out the parameters, group 1 is field, group 2 is field name
+    resultant = ParseLogic(resultant, divOne.findall(inputString)[0])
+    resultant = ParseDoc(resultant, divTwo.findall(inputString)[0])
+
+#inputs: the resultant dict and the logicals input
+#outputs: the resultant dict with logical data added in so the entire dict should be defined and the inner dicts should have Mutually Exclusive Links set
+def ParseLogic(resultant, input):
+    return 0
+
+#inputs: the resultant dict and the help text input
+#outputs: the resultant dict with the Help Text and Field Name added
+def ParseDoc(resultant, input):
+    return 0
+
+#this is old code that may be used at a later time
+def Unused():
     logic = ""
-    help = {}
+    help = {}#stores the help text dict (the final result)
     helpHelper = {"Text": "","Type": (-1, [])}
     groups = []
     counter = 0
@@ -22,8 +51,9 @@ def Parse(str):
         if (a != ""):
             if "optional arguments:" in a:
                 segment = True
+                #we also need to deal with this :/
                 logic = logic.split(".py ")[1]
-                logicexp = re.compile("\[-+(\w+)|\(-+(\w+)|\| ?-+(\w+)")
+                logicexp = re.compile("\[-+(\w+)|\(-+(\w+)|\| -+(\w+)| -+(\w+)")
                 #splits the logic part into three groups, group 1 starts with [, group 2 starts with (, and group 3 starts with |
                 groups = logicexp.findall(logic)
             elif (segment==False):
@@ -111,9 +141,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-pyfile", required=True)
 args = parser.parse_args()
 print(args.pyfile + "\n")
-popen = sp.Popen('python %s --help' %args.pyfile, stdout=sp.PIPE)
+popen = sp.Popen('python %s --help' %args.pyfile, stdout=sp.PIPE, shell=True)
 print(popen)
 stri = popen.stdout.read()
+print(stri)
 help = Parse(stri)
 #folds the dict up into a text document
 filenamef = Fold(help, args)
