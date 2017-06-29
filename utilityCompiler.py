@@ -1,6 +1,4 @@
 #probably need to do this entire thing with regular expressions
-#in the process of doing such... not functioning at all
-return 0
 import subprocess as sp
 import argparse
 import re
@@ -15,25 +13,43 @@ def Parse(inputString):
 
     resultant = {}
     divOne = re.compile("(?s)usage:\s\w+(?:.py )?(.+)optional arguments:")#this is the section with the logic
-    divOneParse = re.compile("((?:\| | |\[|\()-+(\w+))[^[-|]*")#this parses out the logic, group 1 tells you something about the type, group 2 tells you what field is
-    #we might be able to combine the following two
+    #might be able to combine the following two
     divTwo = re.compile("(?s)optional arguments:\s(.+)(?:required named arguments)?")#this is the section with the optional or mutually exclusive arguments
     divThree = re.compile("(?s)required named arguments:\s(.+)")#this is the section with the not optional arguements
-    #this next one parses out the text
-    textParse = re.compile("(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*") #group 1: param group 2: text... Doesn't function in every case properly, unsure why
-    paramParse = re.compile("(?s)-+([^\s]+)\s([^\n|\r|\-]+)") #this pares out the parameters, group 1 is field, group 2 is field name
     resultant = ParseLogic(resultant, divOne.findall(inputString)[0])
-    resultant = ParseDoc(resultant, divTwo.findall(inputString)[0])
+    resultant = ParseDoc(resultant, divTwo.findall(inputString)[0]+divThree.findall(inputString)[0])
 
 #inputs: the resultant dict and the logicals input
 #outputs: the resultant dict with logical data added in so the entire dict should be defined and the inner dicts should have Mutually Exclusive Links set
 def ParseLogic(resultant, input):
-    return 0
+    print("Starting up Parsing of Logic")
+    print(input)
+    divOneParse = re.compile("((?:\| | |\[|\()-+(\w+))[^[-|]*")  # this parses out the logic, group 1 tells you something about the type, group 2 tells you what field is
+    mutualArr = []
+    for e in divOneParse.findall(input[0]):
+        print(e)
+        resultant.update(e, {})
+        resultant[e].update("Mutually Exclusive Links", mutualArr)
+        #make sure e is what i think it is before proceeding
+    print("Ending Parsing of Logic \n\n")
+    return resultant
 
 #inputs: the resultant dict and the help text input
 #outputs: the resultant dict with the Help Text and Field Name added
 def ParseDoc(resultant, input):
-    return 0
+    print("Starting up Documentation Parsing")
+    print(input)
+    # this next one parses out the text
+    textParse = re.compile("(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*")  # group 1: param group 2: text... Doesn't function in every case properly, unsure why
+    paramParse = re.compile("(?s)-+([^\s]+)\s([^\n|\r|\-]+)")  # this pares out the parameters, group 1 is field, group 2 is field name
+    for e in textParse.findall(input):
+        a = paramParse.findall(e[0])
+        #a[0] = field
+        #a[1] = input name
+        #e[1] = help text
+
+    print("Ending Documentatino Parsing \n\n")
+    return resultant
 
 #this is old code that may be used at a later time
 def Unused():
