@@ -9,7 +9,9 @@ import re
 def Parse(inputString):
     #Shape of output:
     #a dict of param fields ex: i, verbose, v
-    #that each hold a dict containing: "Field Name" (a string), "Help Text" (a string), and "Mutually Exclusive Links" (a list)
+    #that each hold a dict containing: "Field Name" (a string), "Help Text" (a string),
+    #"Type" (a string), "Requirement Status" (a tupple with a number and a list), "Base Value" (a "Type")
+
 
     resultant = {}
     divOne = re.compile("(?s)usage:\s\w+(?:.py )?(.+)optional arguments:")#this is the section with the logic
@@ -17,7 +19,11 @@ def Parse(inputString):
     divTwo = re.compile("(?s)optional arguments:\s(.+)(?:required named arguments)?")#this is the section with the optional or mutually exclusive arguments
     divThree = re.compile("(?s)required named arguments:\s(.+)")#this is the section with the not optional arguements
     resultant = ParseLogic(resultant, divOne.findall(inputString)[0])
-    resultant = ParseDoc(resultant, divTwo.findall(inputString)[0]+divThree.findall(inputString)[0])
+    docLong = divTwo.findall(inputString)[0]
+    if(divThree.findall(inputString)!=[]):
+        docLong = docLong + divThree.findall(inputString)[0]
+    resultant = ParseDoc(resultant, docLong)
+    return resultant
 
 #inputs: the resultant dict and the logicals input
 #outputs: the resultant dict with logical data added in so the entire dict should be defined and the inner dicts should have Mutually Exclusive Links set
@@ -25,13 +31,33 @@ def ParseLogic(resultant, input):
     print("Starting up Parsing of Logic")
     print(input)
     divOneParse = re.compile("((?:\| | |\[|\()-+(\w+))[^[-|]*")  # this parses out the logic, group 1 tells you something about the type, group 2 tells you what field is
-    mutualArr = []
-    for e in divOneParse.findall(input[0]):
+    mutualArr = ("---")
+    for e in divOneParse.findall(input):
         print(e)
-        resultant.update(e, {})
-        resultant[e].update("Mutually Exclusive Links", mutualArr)
+        print(mutualArr)#ROFL xD
+        resultant.update({e[1]: {}})
+        if (e[0][0]=='['):
+            val = 0
+        elif (e[0][0]=='('):
+            val = 1
+        elif (e[0][0]=="|"):
+            val = 2
+        else:
+            val = 3
+        if (val==0 or val==1):
+            mutualArr = ([e[1]], mutualArr)
+        elif (val==2):
+            mutualArr[0].append(e[1])
+        else:
+            try:
+                mutualArr = mutualArr[1]
+            except:
+                print("Dropping down")
+        resultant[e[1]].update({"Requirement Status": (val, mutualArr[0])})
         #make sure e is what i think it is before proceeding
     print("Ending Parsing of Logic \n\n")
+    print(resultant)
+    print("\n\n")
     return resultant
 
 #inputs: the resultant dict and the help text input
@@ -39,16 +65,21 @@ def ParseLogic(resultant, input):
 def ParseDoc(resultant, input):
     print("Starting up Documentation Parsing")
     print(input)
+    print("\n")
     # this next one parses out the text
     textParse = re.compile("(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*")  # group 1: param group 2: text... Doesn't function in every case properly, unsure why
-    paramParse = re.compile("(?s)-+([^\s]+)\s([^\n|\r|\-]+)")  # this pares out the parameters, group 1 is field, group 2 is field name
+    paramParse = re.compile("(?s)-+([^\s]+)\s(\w+)([\w\s\r\n\t.\(\)]+(?:(?=-)|))")  # this pares out the parameters, group 1 is field, group 2 is field name
     for e in textParse.findall(input):
+        print(e)
         a = paramParse.findall(e[0])
-        #a[0] = field
-        #a[1] = input name
-        #e[1] = help text
+        print(a)
+        if(a!=[]):
+            a = a[0]
+            resultant[a[0]].update({"Field Name": a[1], "Help Text": a[2].strip()})
 
-    print("Ending Documentatino Parsing \n\n")
+    print("Ending Documentation Parsing \n\n")
+    print(resultant)
+    print("\n\n")
     return resultant
 
 #this is old code that may be used at a later time
@@ -114,11 +145,14 @@ def Unused():
 #output: Filename
 #Places a dictionary into a .txt file in a reasonable manner
 def Fold(dict, args):
+    print("Starting Fold: \n\n\n\n")
     text_file = open("manifest_of_%s.txt" %args.pyfile, 'w')
     for e in dict.keys():
-        text_file.write(str(e) + " " + dict[e]["Text"] + "\n\t" + str(dict[e]["Type"][0]) + "\n")
-        for key in dict[e]["Type"][1]:
-            text_file.write("\t\t" + str(key) + "\n")
+        text_file.write(e+"\n")
+        print(e+"\n")
+        for a in dict[e].keys():
+            text_file.write("\t" + a + " : " +str(dict[e][a]) + "\n")
+            print("\t" + a + " : " +str(dict[e][a]) + "\n")
     text_file.close()
     return "manifest_of_%s.txt" %args.pyfile
 #The file produced by this can be edited by the user, adding links or removing them where wanted
@@ -132,7 +166,7 @@ def Fold(dict, args):
 def UnFold(filename):
     text_file = open(filename, 'r')
     phrase = text_file.read()
-    print phrase
+    print(phrase)
     arr = phrase.split("\n")
     fieldsave = ""
     compiled = {}
