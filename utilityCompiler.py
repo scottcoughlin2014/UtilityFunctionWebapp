@@ -73,17 +73,22 @@ def ParseDoc(resultant, input):
     print(input)
     print("\n")
     # this next one parses out the text
-    textParse = re.compile(
-        "(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*")  # group 1: param group 2: text... Doesn't function in every case properly, unsure why
-    paramParse = re.compile(
-        "(?s)-+([^\s]+)\s(\w+)([\w\s\r\n\t.\(\)]+(?:(?=-)|))")  # this pares out the parameters, group 1 is field, group 2 is field name
-    for e in textParse.findall(input):
+    sectionCapture = re.compile(
+        "(?s)(?:\s+-+(.+?))(?:(?=[\n\r]\s+-+)|$)")
+    sectionParse = re.compile(
+        "(?s)([^\s,]+)(?:\s([^\s,]+))?(?:,\s+-+([^\s]+)(?:\s([^\s]+))?)?\s+(.+)")
+    #no longer in use
+    #textParse = re.compile(
+    #    "(?m)^\s+(-+.+$)(?:\s+([^-]+)$)*")  # group 1: param group 2: text... Doesn't function in every case properly, unsure why
+    #paramParse = re.compile(
+    #    "(?s)-+([^\s]+)\s(\w+)([\w\s\r\n\t.\(\)]+(?:(?=-)|))")  # this pares out the parameters, group 1 is field, group 2 is field name
+    for e in sectionCapture.findall(input):
         print(e)
-        a = paramParse.findall(e[0])
+        a = sectionParse.findall(e)
         print(a)
-        if (a != []):
+        if (a != []): #if it actually matches something
             a = a[0]
-            resultant[a[0]].update({"Field Name": a[1], "Help Text": a[2].strip()})
+            resultant[a[0]].update({"Field Name": a[1], "Help Text": a[4].strip()})
 
     print("Ending Documentation Parsing \n\n")
     print(resultant)
@@ -152,6 +157,7 @@ def Unused():
 # output: Filename
 # Places a dictionary into a .txt file in a reasonable manner
 def Fold(dict, args):
+    #format: dict of fields that each are dicts with {Field Name, Reqiurement Status, Help Text}
     print("Starting Fold: \n\n\n\n")
     text_file = open("manifest_of_%s.txt" % args.pyfile, 'w')
     for e in dict.keys():
@@ -173,16 +179,18 @@ def Fold(dict, args):
 # Does the inverse of Fold
 # wont ever be used here but here for documentation purposes
 def UnFold(filename):
+    print("unfolding commencing.....\n\n\n\n\n\n\n\n\n\n\n\n")
     text_file = open(filename, 'r')
     phrase = text_file.read()
     print(phrase)
     arr = phrase.split("\n")
+    print(arr)
     fieldsave = ""
     compiled = {}
     linksave = []
     # this parses line by line and determines the meaning from the amount of tabs used on that line
     for e in arr:
-        if (e != ""):
+        if (e != ""): #this should never fail
             if (e[1] == "\t"):
                 linksave.append(e.strip("\t"))
             elif (e[0] == "\t"):
@@ -198,8 +206,12 @@ def UnFold(filename):
 # this part simply calls the function and sees what its output for help is and then pases the information on to parser
 parser = argparse.ArgumentParser()
 parser.add_argument("-pyfile")
+#these next three should be mutually exclusive
+parser.add_argument("-fold")
+parser.add_argument("-unfold")
+parser.add_argument("-print")
 args = parser.parse_args()
-args.pyfile = "testSubject.py"
+args.pyfile = "interface.py"
 print(args.pyfile + "\n")
 popen = sp.Popen('python %s --help' % args.pyfile, stdout=sp.PIPE, shell=True)
 print(popen)
