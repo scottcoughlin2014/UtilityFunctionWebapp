@@ -17,3 +17,5 @@ I'm currently working on a problem with documentation such as:
 as the regular expression cataches that as two different results
 
 The logic seems to be working well... but it will not have complete functionality, there may be cases such as nested mutually exclusive arguments that need to be manually inputed like: (--ZooID | (Unique ID | Gravity ID)) would not be processed correctly. 
+
+7/17/17: I didn't get to work much over my vacation. The function is now in full functionallity until unfold. I am working on rebuilding unfold to unfold correctly, especially with new additions.
