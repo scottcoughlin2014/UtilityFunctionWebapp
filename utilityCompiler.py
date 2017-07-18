@@ -1,7 +1,7 @@
-# probably need to do this entire thing with regular expressions
 import subprocess as sp
 import argparse
 import re
+#from ast import literal_eval as make_tuple #needed for making tuples
 
 
 # input: string of help result to do an initial pass on
@@ -184,24 +184,48 @@ def UnFold(filename):
     phrase = text_file.read()
     print(phrase)
     arr = phrase.split("\n")
-    print(arr)
-    fieldsave = ""
+    print("------------------")
+    fieldSplitter = re.compile("(?s)\s+(.+)\s:\s?(.+)?") #splits a field into the field name and the entry
     compiled = {}
-    linksave = []
+    savedfield = ""
+    last = ""
     # this parses line by line and determines the meaning from the amount of tabs used on that line
     for e in arr:
+        print e
         if (e != ""): #this should never fail
-            if (e[1] == "\t"):
-                linksave.append(e.strip("\t"))
-            elif (e[0] == "\t"):
-                linksave = []
-                compiled[fieldsave].update({"Type": (int(e), linksave)})
+            if (e[0] != "\t" and e[0] != " "):
+                savedfield = str(e)
+                compiled.update({savedfield:{}})
+                print("Generating: "+savedfield)
             else:
-                p = e.split(" ", 1)
-                compiled.update({p[0]: {"Text": p[1]}})
-                fieldsave = p[0]
+                a = fieldSplitter.findall(e)
+                print a
+                if a != []:
+                    a = a[0]
+                    last = a[0]
+                    if a[1] != "":
+                        if a[1][0] == "(":
+                            compiled[savedfield].update({last : maketuple(a[1])})
+                        else:
+                            compiled[savedfield].update({last: a[1]})
+                        print("Adding "+last+" to: "+savedfield+" with value of: "+str(a[1]))
+                else:
+                    print compiled
+                    compiled[savedfield].update({last: compiled[savedfield][last]+e.strip()})
     return compiled
 
+def maketuple(string):
+    print("I will make a tuple")
+    formSplitter = re.compile("(?s)\((\d),\s\[(.+)\]\)")#splits into didget and inner part of the requirements
+    listExtractor = re.compile("(?s)'([^']+)'")#identifys all the parts of a list
+    temp = formSplitter.findall(string)[0]
+    print temp
+    int_imp = int(temp[0])
+    temp = listExtractor.findall(temp[1])
+    print temp
+    tup = (int_imp, temp)
+    print("tuple complete! :)")
+    return tup
 
 # this part simply calls the function and sees what its output for help is and then pases the information on to parser
 parser = argparse.ArgumentParser()
@@ -224,4 +248,5 @@ filenamef = Fold(help, args)
 recomped = UnFold(filenamef)
 print
 print
+print help
 print recomped
