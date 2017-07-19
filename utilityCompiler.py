@@ -16,7 +16,7 @@ def Parse(inputString):
     divOne = re.compile("(?s)usage:\s\w+(?:.py )?(.+)optional arguments:")  # this is the section with the logic
     # might be able to combine the following two
     divTwo = re.compile(
-        "(?s)optional arguments:\s(.+)(?:required named arguments)?")  # this is the section with the optional or mutually exclusive arguments
+        "(?s)optional arguments:\s(.+)")  # this is the section with the optional or mutually exclusive arguments
     divThree = re.compile("(?s)required named arguments:\s(.+)")  # this is the section with the not optional arguements
     #parse the logic
     resultant = ParseLogic(resultant, divOne.findall(inputString)[0])
