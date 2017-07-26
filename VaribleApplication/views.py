@@ -25,6 +25,7 @@ def runapp(request, func):
     folder = data_loc + "/" + function_name + "/"
     filename = folder + function_manifest
     data_contents = str(UnFold(filename))#str(os.listdir(data_loc))
+    template = loader.get_template('polls/index.html')
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
     return render(request, 'VaribleApplication/pagestructure.html', {})
 
