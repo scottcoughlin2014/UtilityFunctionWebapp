@@ -5,8 +5,6 @@ import sys #this is needed to deal with inputs
 import os #for the sql input
 from sqlalchemy.engine import create_engine #for sql input
 
-#os.environ = {'QUEST_SQL_USER': 'MLA', 'QUEST_SQL_PASSWORD': 'gl1tch35Rb4d!'}
-#engine = create_engine('postgresql://{0}:{1}@gravityspy.ciera.northwestern.edu:5432/gravityspy'.format(os.environ['QUEST_SQL_USER'],os.environ['QUEST_SQL_PASSWORD']))
 
 def main():
     print "Starting up..."
