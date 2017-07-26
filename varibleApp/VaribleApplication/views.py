@@ -2,7 +2,12 @@
 from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
+
 import os
+import subprocess as sp
+import argparse
+import re
+from django.template import loader
 
 data_loc = os.curdir + "/DataFolder"
 
