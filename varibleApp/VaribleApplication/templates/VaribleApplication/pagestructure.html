@@ -4,6 +4,18 @@
 
 {% for imp in data_contents.keys() %}
 	<div>
-		<p>{{ data_contents[keys]["Field Name"]</p>
+		<form action="/run/" method="get">
+			<label for="Input">{{ data_contents[keys]["Field Name"]: </label>
+			<input id="Input" type="text" name="Input" value="what?">
+			<input type="submit" value="OK">
+		</form>
 	</div>
 {% endfor %}
+<div>
+	<form action="/run/" method="get">
+		<input type="run" value="Run">
+	</form>
+</div>
+<div>
+	<p class="output"></p>
+</div>
