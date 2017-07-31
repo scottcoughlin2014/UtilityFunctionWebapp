@@ -1,7 +1,9 @@
+<!-- First part of the output: the function name stated -->
 <div>
 	<h1>Programing Being run: {{ function_name }}</h1>
 </div>
 
+<!-- Then we make the table of inputs avalible. More functionality with required arguments and stuff will be added eventually -->
 {% for imp in data_contents.keys() %}
 	<div>
 		<form action="/run/" method="get">
@@ -11,6 +13,9 @@
 		</form>
 	</div>
 {% endfor %}
+
+<!-- Now we make a button that allows you to run with the inputs -->
+<!-- nothing else is really set up to deal with this because I have never done it before and the templates arn't working -->
 <div>
 	<form action="/run/" method="get">
 		<input type="run" value="Run">
