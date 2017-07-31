@@ -8,3 +8,6 @@ Matthew will have to work on the templates as they require more knowledge about 
 templates, html. and css code to build a webpage
 
 Information on the rest of the things can be found in their respective files
+
+Update 7/31/17: I have tried to do reasearch and work for dealing with widgets, forms, and input in general. I will need templates to work for anything to be testable.
+I have tried to build an initial copy of what the forms and template will look like.
