@@ -7,5 +7,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     #url(r'^tools/$', views.tools, name='tools'), #thinking...
+    #url(r'^run/$,', views.run),
     url(r'^(?P<func>.+)$', views.runapp), #for now we are going to capture everything
 ]
