@@ -1,18 +1,20 @@
 <!-- First part of the output: the function name stated -->
 <div>
-	<h1>Programing Being run: {{ function_name }}</h1>
+	<h1>Programing Being run: {{ function_name }}... {{data_contents.keys}}</h1>
 </div>
 
 <!-- Then we make the table of inputs avalible. More functionality with required arguments and stuff will be added eventually -->
-{% for imp in data_contents.keys() %}
-	<div>
-		<form action="/run/" method="get">
-			<label for="Input">{{ data_contents[keys]["Field Name"]: </label>
-			<input id="Input" type="text" name="Input" value="what?">
-			<input type="submit" value="OK">
-		</form>
-	</div>
-{% endfor %}
+<div>
+	<form action={{request.path}}/ method="PUT">
+		{% for imp in data_contents.keys %}
+			<div>
+				<label for={{imp}}>{{request.path}} </label>
+				<input id={{imp}} type="text" name={{imp}} value="startvalue">
+			</div>
+		{% endfor %}
+		<input type="submit" value="button_name">
+	</form>
+</div>
 
 <!-- Now we make a button that allows you to run with the inputs -->
 <!-- nothing else is really set up to deal with this because I have never done it before and the templates arn't working -->

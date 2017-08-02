@@ -18,14 +18,16 @@ def index(request):
     return HttpResponse("This is where the app might spawn?")
 
 def runapp(request, func):
+    if (request.method=="PUT"):
+        return HttpResponse("ran application?")
     function_name = str(func)
     function_manifest = "manifest_of_" + function_name + ".py.txt"
     folder = data_loc + "/" + function_name + "/"
     filename = folder + function_manifest
-    data_contents = str(UnFold(filename))#str(os.listdir(data_loc))
+    data_contents = {"dank": "memes", "steel": "dreams"}#str(UnFold(filename))#str(os.listdir(data_loc))
     template = loader.get_template('VaribleApplication/pagestructure.html')
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
-    return render(request, 'VaribleApplication/pagestructure.html', {})
+    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents})
 
 
 # input: Filename
