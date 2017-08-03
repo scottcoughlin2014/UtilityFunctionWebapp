@@ -19,15 +19,24 @@ def index(request):
 
 def runapp(request, func):
     #need to check if there are no inputs
-
     function_name = str(func)
     function_manifest = "manifest_of_" + function_name + ".py.txt"
-    folder = data_loc + "/" + function_name + "/"
+    folder = data_loc + "/" + function_name
     filename = folder + function_manifest
-    data_contents = {"testd1": "teste1", "testd2": "teste2"}#str(UnFold(filename))#str(os.listdir(data_loc))
+    data_contents = {"testd1": {"Field Name": "field1", "Help Text": "help1"}, "testd2": {"Field Name": "field2", "Help Text": "help2"}}#str(UnFold(filename))#str(os.listdir(data_loc))
     template = loader.get_template('VaribleApplication/pagestructure.html')
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
-    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents})
+    requestInputs = dict(request.GET.lists())
+    run_from = "unknown"
+    output = "Run Me!"
+    if (requestInputs!={}):
+        run_from = folder[1:] + function_name.strip("/") + ".py"
+        try:
+            popen = sp.Popen(run_from + " -h")
+            output = popen.stdout.read()
+        except:
+            output = "Failed"
+    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents, "inputs": requestInputs, "runpoint": run_from, "output": output})
 
 
 # input: Filename
