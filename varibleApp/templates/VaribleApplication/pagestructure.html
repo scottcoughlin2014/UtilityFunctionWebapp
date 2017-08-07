@@ -1,30 +1,28 @@
 <!-- First part of the output: the function name stated -->
 <div>
 	<h1>Programing Being run: {{ function_name }}... {{data_contents.keys}}</h1>
-	<h2>{{inputs}}</h2>
-	<h3>{{runpoint}}</h3>
+	<!--<h2>{{inputs.keys}}</h2>
+	<h3>{{runpoint}}</h3>-->
 </div>
 
 <!-- Then we make the table of inputs avalible. More functionality with required arguments and stuff will be added eventually -->
 <div>
-	<form action={{request.path}}/ method="GET">
+	<form action={{request.path}} method="GET">
 		{% for imp in data_contents.keys %}
 			<div>
-				<label for={{imp}}>{{request.path}} </label>
-				<input id={{imp}} type="text" name={{imp}} value="startvalue">
+				<label for={{imp}}>{{imp}} </label>
+				<!--{% if imp.value %}
+					<input id={{imp}} type="text" name={{imp}} value=imp.value>
+				{% endif %}-->
+				<input id={{imp}} type="text" name={{imp}}>
 			</div>
 		{% endfor %}
-		<input type="submit" value="button_name">
+		<input type="submit" value="Run">
 	</form>
 </div>
 
 <!-- Now we make a button that allows you to run with the inputs -->
 <!-- nothing else is really set up to deal with this because I have never done it before and the templates arn't working -->
-<div>
-	<form action="/run/" method="get">
-		<input type="run" value="Run">
-	</form>
-</div>
 <div>
 	<p class="output">{{output}}</p>
 </div>

@@ -68,9 +68,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
  #               'VaribleApplication.templatetags'
             ],
-            'libraries' : {
-                'templatetags' : 'VaribleApplication.templatetags'
-            }
+ #           'libraries' : {
+ #               'templatetags' : 'VaribleApplication.templatetags'
+ #           }
         },
     },
 ]
