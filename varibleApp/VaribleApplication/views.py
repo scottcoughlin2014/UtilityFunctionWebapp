@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 
+import importlib
 import os
 import subprocess as sp
 import argparse
@@ -18,6 +19,8 @@ def index(request):
     return HttpResponse("This is where the app might spawn?")
 
 def runapp(request, func):
+
+    mod = importlib.import_module("DataFolder.interface.interface")
     #need to check if there are no inputs
     function_name = str(func).strip("/")
     function_manifest = "manifest_of_" + function_name + ".py.txt"
