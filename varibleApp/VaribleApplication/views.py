@@ -45,7 +45,7 @@ def runapp(request, func):
         data_contents = try_dict
     except:
         try_dict = {"failed:": filename}
-    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents, "inputs": requestInputs, "runpoint": run_from, "output": output})
+    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents, "inputs": requestInputs, "runpoint": run_from, "output": output, "function_name": function_name})
 
 # input: Filename
 # output: Dictionary from file
