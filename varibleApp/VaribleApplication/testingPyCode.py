@@ -4,7 +4,7 @@ import os
 print(os.getcwd())
 #try:
 print("wtf")
-mod = importlib.import_module("DataFolder.interface.interface")
+mod = importlib.import_module("VaribleApplication.DataFolder.interface.interface")
 print("is going")
 print mod
 print("on")
