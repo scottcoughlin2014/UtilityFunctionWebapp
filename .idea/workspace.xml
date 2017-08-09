@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13799a0a-517d-4f6d-8eff-cee46a6fc238" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" afterPath="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" afterPath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
     </list>
@@ -16,11 +15,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+            <state relative-caret-position="476">
+              <caret line="31" column="65" lean-forward="false" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -68,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testingPyCode.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testingPyCode.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+            <state relative-caret-position="136">
+              <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -100,8 +99,8 @@
         <option value="$PROJECT_DIR$/utilityCompiler.py" />
         <option value="$PROJECT_DIR$/varibleApp/templates/VaribleApplication/pagestructure.html" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/DataFolder/interface/interface.py" />
-        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
+        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
       </list>
     </option>
   </component>
@@ -444,22 +443,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py">
+    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="11" lean-forward="true" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+        <state relative-caret-position="476">
+          <caret line="31" column="65" lean-forward="false" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#24#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
+    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="34" column="4" lean-forward="true" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+        <state relative-caret-position="136">
+          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding>
-            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>

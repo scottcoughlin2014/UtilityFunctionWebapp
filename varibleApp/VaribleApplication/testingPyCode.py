@@ -4,9 +4,9 @@ import os
 print(os.getcwd())
 #try:
 print("wtf")
-mod = importlib.import_module("DataFolder.interface.interface")
+#mod = importlib.import_module("DataFolder.interface.interface")
 print("is going")
-print mod
+#print mod
 print("on")
 #except:
 #    mod = importlib.import_module("urls")
