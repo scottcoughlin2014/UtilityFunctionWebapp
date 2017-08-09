@@ -8,6 +8,8 @@ import os
 import subprocess as sp
 import argparse
 import re
+#importlib.import_module("DataFolder.interface.interface")
+import testingPyCode
 from django.template import loader
 
 data_loc = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\DataFolder"
@@ -19,15 +21,19 @@ def index(request):
     return HttpResponse("This is where the app might spawn?")
 
 def runapp(request, func):
-
-    mod = importlib.import_module("DataFolder.interface.interface")
     #need to check if there are no inputs
     function_name = str(func).strip("/")
     function_manifest = "manifest_of_" + function_name + ".py.txt"
     folder = data_loc + "\\" + function_name
     filename = folder + "\\" + function_manifest
-    data_contents = {"testd1": {"Field Name": "field1", "Help Text": "help1"}, "testd2": {"Field Name": "field2", "Help Text": "help2"}}#str(UnFold(filename))#str(os.listdir(data_loc))
-    template = loader.get_template('VaribleApplication/pagestructure.html')
+    #data_contents = {"testd1": {"Field Name": "field1", "Help Text": "help1"}, "testd2": {"Field Name": "field2", "Help Text": "help2"}}#str(UnFold(filename))#str(os.listdir(data_loc))
+    #template = loader.get_template('VaribleApplication/pagestructure.html')
+
+    #imports the function
+    imp_loc = "DataFolder." + function_name + "." + function_name
+    #mod = importlib.import_module("DataFolder.interface.interface")
+    #mod = importlib.import_module(imp_loc)
+
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
     requestInputs = dict(request.GET.lists())
     run_from = "unknown"

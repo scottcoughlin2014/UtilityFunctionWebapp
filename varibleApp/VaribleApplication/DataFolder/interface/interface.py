@@ -70,5 +70,5 @@ def output(simularities, args):
     if args['dict']:
         return outdict
 
-
-main()
+if __name__ == '__main__':
+    main()
