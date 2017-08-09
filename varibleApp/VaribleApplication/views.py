@@ -3,13 +3,14 @@ from __future__ import unicode_literals
 from django.http import HttpResponse
 from django.shortcuts import render
 
+import importlib
 import os
 import subprocess as sp
 import argparse
 import re
 from django.template import loader
 
-data_loc = os.curdir + "/DataFolder"
+data_loc = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\DataFolder"
 
 #Have to think about how im setting this up... models etc
 
@@ -18,17 +19,36 @@ def index(request):
     return HttpResponse("This is where the app might spawn?")
 
 def runapp(request, func):
-    if (request.method=="PUT"):
-        return HttpResponse("ran application?")
-    function_name = str(func)
+
+    mod = importlib.import_module("DataFolder.interface.interface")
+    #need to check if there are no inputs
+    function_name = str(func).strip("/")
     function_manifest = "manifest_of_" + function_name + ".py.txt"
-    folder = data_loc + "/" + function_name + "/"
-    filename = folder + function_manifest
-    data_contents = {"dank": "memes", "steel": "dreams"}#str(UnFold(filename))#str(os.listdir(data_loc))
+    folder = data_loc + "\\" + function_name
+    filename = folder + "\\" + function_manifest
+    data_contents = {"testd1": {"Field Name": "field1", "Help Text": "help1"}, "testd2": {"Field Name": "field2", "Help Text": "help2"}}#str(UnFold(filename))#str(os.listdir(data_loc))
     template = loader.get_template('VaribleApplication/pagestructure.html')
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
-    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents})
-
+    requestInputs = dict(request.GET.lists())
+    run_from = "unknown"
+    output = "Run Me!"
+    if (requestInputs!={}):
+        run_from = folder + "\\" + function_name.strip("/") + ".py"
+        #try:
+        popen = sp.Popen("python " + run_from + " -h", stdout=sp.PIPE, shell=True)
+        output = popen.stdout.read()
+        #except:
+        #    if (os.path.isfile(run_from)):
+        #        output= "TRUE FAIL"
+        #    else:
+        #        output= "FALSE FAIL"
+    try_dict = {}
+    try:
+        try_dict = UnFold(filename)
+        data_contents = try_dict
+    except:
+        try_dict = {"failed:": filename}
+    return render(request, 'VaribleApplication/pagestructure.html', {"data_contents": data_contents, "inputs": requestInputs, "runpoint": run_from, "output": output, "function_name": function_name})
 
 # input: Filename
 # output: Dictionary from file
