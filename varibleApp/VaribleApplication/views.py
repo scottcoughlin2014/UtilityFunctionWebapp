@@ -8,8 +8,7 @@ import os
 import subprocess as sp
 import argparse
 import re
-#importlib.import_module("DataFolder.interface.interface")
-#import testingPyCode
+
 from django.template import loader
 
 data_loc = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\DataFolder"
@@ -31,7 +30,6 @@ def runapp(request, func):
 
     #imports the function
     imp_loc = "DataFolder." + function_name + "." + function_name
-    #mod = importlib.import_module("DataFolder.interface.interface")
     mod = importlib.import_module(imp_loc)
 
     #return HttpResponse("Running Application: " + function_name + " Pulling from: " + folder + " Computing file: " + filename + " Manifest contains: " + data_contents)
