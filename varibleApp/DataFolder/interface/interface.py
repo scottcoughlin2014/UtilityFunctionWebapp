@@ -71,4 +71,5 @@ def output(simularities, args):
         return outdict
 
 
-main()
+if __name__ == '__main__':
+    main()
