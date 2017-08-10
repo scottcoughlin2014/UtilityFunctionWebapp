@@ -36,17 +36,7 @@ def runapp(request, func):
     requestInputs = dict(request.GET.lists())
     run_from = "unknown"
     output = "Run Me!"
-    if (requestInputs!={}):
-        run_from = folder + "\\" + function_name.strip("/") + ".py"
-        #try:
-        popen = sp.Popen("python " + run_from + " -h", stdout=sp.PIPE, shell=True)
-        output = popen.stdout.read()
-        #except:
-        #    if (os.path.isfile(run_from)):
-        #        output= "TRUE FAIL"
-        #    else:
-        #        output= "FALSE FAIL"
-    try_dict = {}
+    mod.main(requestInputs)
     try:
         try_dict = UnFold(filename)
         data_contents = try_dict

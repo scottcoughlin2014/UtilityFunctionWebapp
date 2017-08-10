@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13799a0a-517d-4f6d-8eff-cee46a6fc238" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" afterPath="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" afterPath="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" afterPath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,10 +19,22 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="31" column="65" lean-forward="false" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
+            <state relative-caret-position="223">
+              <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="interface.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="515">
+              <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -67,7 +80,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testingPyCode.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="testingPyCode.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
@@ -99,8 +112,9 @@
         <option value="$PROJECT_DIR$/utilityCompiler.py" />
         <option value="$PROJECT_DIR$/varibleApp/templates/VaribleApplication/pagestructure.html" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/DataFolder/interface/interface.py" />
-        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
+        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
+        <option value="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" />
       </list>
     </option>
   </component>
@@ -374,13 +388,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-331">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/varibleApp/varibleApp/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -443,22 +450,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="31" column="65" lean-forward="false" selection-start-line="31" selection-start-column="65" selection-end-line="31" selection-end-column="65" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>

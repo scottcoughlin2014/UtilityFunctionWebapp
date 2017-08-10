@@ -6,10 +6,10 @@ import os #for the sql input
 from sqlalchemy.engine import create_engine #for sql input
 
 
-def main():
+def main(arguments):
     print "Starting up..."
     sys.stdout.flush()
-    args = null_check()
+    args = null_check(arguments)
     print "Extracting table from database..."
     sys.stdout.flush()
     simularites = sqlCall(args)  # the table of simularity mesurements
@@ -23,7 +23,7 @@ def main():
 # inputs: arguments
 # output: arguments in a better format
 # checks to see if the arguement inputs are correct, if not, program ends
-def null_check():
+def null_check(arguments):
     parser = argparse.ArgumentParser()
     parser.add_argument("--howmany", help="How many closest simularites to display.", type=float, default=5)
     parser.add_argument("--thresh" , help="threshold for what simularites to display.", type=float, default=2)
@@ -32,7 +32,7 @@ def null_check():
     group.add_argument("--ZooID", help="ZooID of the image you want to compare.")
     group.add_argument("--UniqueID", help="UniqueID of the image you want to compare.")
     parser.add_argument("-dict", type=bool, default=False)
-    args = parser.parse_args()
+    args = parser.parse_args(args=arguments)
     #this return statment is not completely flesh out yet
     return 0;
 
@@ -72,4 +72,8 @@ def output(simularities, args):
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        import sys
+        main(sys.args[1:])
+    except:
+        print("ERROR")
