@@ -36,7 +36,8 @@ def runapp(request, func):
     requestInputs = dict(request.GET.lists())
     run_from = "unknown"
     output = "Run Me!"
-    mod.main(requestInputs)
+    print("running: " + str(mod) + "with inputs: "+str(requestInputs.values()))
+    mod.main(['testing' , 'some', 'interesting', 'stuff', 'out', 'so watch me', 'whip'])
     try:
         try_dict = UnFold(filename)
         data_contents = try_dict
