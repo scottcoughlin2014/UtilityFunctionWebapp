@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="13799a0a-517d-4f6d-8eff-cee46a6fc238" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" afterPath="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" afterPath="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +14,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
+            <state relative-caret-position="240">
+              <caret line="39" column="85" lean-forward="false" selection-start-line="39" selection-start-column="85" selection-end-line="39" selection-end-column="85" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -28,7 +26,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="interface.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="interface.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="515">
@@ -113,8 +111,8 @@
         <option value="$PROJECT_DIR$/varibleApp/templates/VaribleApplication/pagestructure.html" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/DataFolder/interface/interface.py" />
         <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/testingPyCode.py" />
-        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
         <option value="$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py" />
+        <option value="$PROJECT_DIR$/varibleApp/VaribleApplication/views.py" />
       </list>
     </option>
   </component>
@@ -460,22 +458,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="38" column="27" lean-forward="true" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/varibleApp/DataFolder/interface/interface.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
           <caret line="78" column="22" lean-forward="true" selection-start-line="78" selection-start-column="22" selection-end-line="78" selection-end-column="22" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/varibleApp/VaribleApplication/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="39" column="85" lean-forward="false" selection-start-line="39" selection-start-column="85" selection-end-line="39" selection-end-column="85" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
           </folding>
         </state>
       </provider>
